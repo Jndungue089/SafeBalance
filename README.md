@@ -19,15 +19,6 @@ SafeBalance é baseado em três entidades principais:
 2. **Conta**: Representa a conta financeira de cada cliente, contendo o saldo e o vínculo com o cliente.
 3. **Movimentação**: Representa cada operação financeira, com detalhes sobre valor, tipo (depósito ou saque), motivo e data.
 
-### Aplicação dos Princípios SOLID
-
-O sistema segue os princípios SOLID:
-
-- **Responsabilidade Única**: Cada classe e método tem uma função específica. Por exemplo, a `Conta` apenas gerencia o saldo e as movimentações, sem tratar de dados pessoais do cliente.
-- **Aberto/Fechado**: Métodos para movimentações podem ser estendidos para novos tipos de operações sem alterar o código existente.
-- **Substituição de Liskov e Segregação de Interfaces**: A interface `ISaldo` permite controlar o acesso ao saldo e às movimentações.
-- **Inversão de Dependência**: `IContaRepository` permite implementar persistência de dados separadamente.
-
 ## Diagrama de Classes
 
 Abaixo está o diagrama de classes atualizado, incluindo interfaces para encapsular e proteger dados sensíveis:
@@ -53,23 +44,23 @@ classDiagram
     class Movimentacao {
         +int Id
         +decimal Valor
-        +string Tipo // "Depósito" ou "Saque"
+        +string Tipo
         +string Motivo
         +DateTime Data
     }
     
     interface ISaldo {
-        +Depositar(decimal valor)
-        +Sacar(decimal valor)
-        +ConsultarSaldo() decimal
+        +Depositar(valor)
+        +Sacar(valor)
+        +ConsultarSaldo() : decimal
     }
 
     interface IContaRepository {
-        +SalvarConta(Conta conta)
-        +BuscarContaPorId(int contaId) Conta
+        +SalvarConta(conta)
+        +BuscarContaPorId(contaId) : Conta
     }
 
     Cliente "1" --> "0..*" Conta : possui
     Conta "1" --> "0..*" Movimentacao : realiza
     Conta ..|> ISaldo
-    Conta ..|> IContaRepository : "implementa"
+    Conta ..|> IContaRepository
