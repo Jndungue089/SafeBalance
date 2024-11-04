@@ -10,7 +10,7 @@ O objetivo do SafeBalance é oferecer uma ferramenta onde seja possível gerenci
 
 - **Backend**: .NET (WebAPI)
 - **Frontend**: Angular
-- **Banco de Dados**: SQL Server ou outra base compatível com Entity Framework
+- **Banco de Dados**: MySQL compatível com Entity Framework
 
 ## Estrutura do Sistema
 
