@@ -10,7 +10,7 @@ O objetivo do SafeBalance é oferecer uma ferramenta onde seja possível gerenci
 
 - **Backend**: .NET (WebAPI)
 - **Frontend**: Angular
-- **Banco de Dados**: MySQL compatível com Entity Framework
+- **Banco de Dados**: SQL Server ou outra base compatível com Entity Framework
 
 ## Estrutura do Sistema
 
@@ -36,8 +36,8 @@ classDiagram
         -decimal Saldo
         +int ClienteId
         +List~Movimentacao~ Movimentacoes
-        +Depositar(decimal valor)
-        +Sacar(decimal valor)
+        +Depositar(valor)
+        +Sacar(valor)
         +ConsultarSaldo() decimal
     }
 
@@ -49,15 +49,15 @@ classDiagram
         +DateTime Data
     }
     
-    interface ISaldo {
+    class ISaldo {
         +Depositar(valor)
         +Sacar(valor)
-        +ConsultarSaldo() : decimal
+        +ConsultarSaldo() decimal
     }
 
-    interface IContaRepository {
+    class IContaRepository {
         +SalvarConta(conta)
-        +BuscarContaPorId(contaId) : Conta
+        +BuscarContaPorId(contaId) Conta
     }
 
     Cliente "1" --> "0..*" Conta : possui
