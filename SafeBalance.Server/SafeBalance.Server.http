@@ -1,0 +1,6 @@
+@SafeBalance.Server_HostAddress = http://localhost:5203
+
+GET {{SafeBalance.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
