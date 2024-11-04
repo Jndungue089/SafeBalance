@@ -25,3 +25,29 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+´´´erDiagram
+    CLIENTE {
+        int Id PK
+        string Nome
+        string Email
+    }
+    
+    CONTA {
+        int Id PK
+        int ClienteId FK
+        decimal Saldo
+    }
+    
+    MOVIMENTACAO {
+        int Id PK
+        int ContaId FK
+        decimal Valor
+        string Tipo // "Depósito" ou "Saque"
+        string Motivo
+        datetime Data
+    }
+    
+    CLIENTE ||--o{ CONTA : "possui"
+    CONTA ||--o{ MOVIMENTACAO : "realiza"
+´´´
